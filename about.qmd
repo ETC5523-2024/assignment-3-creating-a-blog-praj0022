@@ -7,10 +7,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com/praj0022
-    - icon: linkedin 
-      text: Linkedin
-      href: https://www.linkedin.com/in/pooja-rajendran-raju-6245a2301/
-
 ---
 
 I am a current student at Monash University pursuing Masters in Business Analytics.
