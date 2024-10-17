@@ -1,12 +1,111 @@
 ---
-title: "Welcome To My Blog Template"
-author: "Emi Tanaka"
-date: "2022-07-18"
-categories: [news]
+title: "From Isolation to Connection: How the World Managed Mental Health in 2020"
+author: "Pooja Rajendran Raju"
+date: "2024-10-16"
+categories: [article]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+```{r Setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
 
-![](thumbnail.jpg)
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(kableExtra)
+```
+
+When COVID-19 hit, the world didn’t just face a health crisis—it also grappled with a mental health crisis. Depression rates surged as people dealt with isolation, financial worries, and uncertainty. So, how did people cope? That’s what we’re digging into here: the different ways people across the globe managed their mental health during the pandemic and what were the most popular coping stategies. By understanding these unique strategies, we can build better mental health support systems that fit different cultural and social contexts. 
+
+Depression isn’t confined to any one group—it impacts people of all ages, backgrounds, and cultures. Recent data shows that depressive symptoms were already on the rise by 2019, particularly affecting older age groups. The COVID-19 pandemic only intensified this trend, with anxiety and depression surging worldwide. According to the World Health Organization (2022), mental health became a critical issue for millions, emphasizing the urgent need for support.
+
+```{r}
+# Loading data
+data_1 <- read.csv("data/depressive-disorders-prevalence-by-age.csv")
+```
+
+```{r}
+
+# Cleaning the data 
+tidy_data_1 <- data_1 |> 
+               rename( Age_5_14 = Depressive.disorders..share.of.population....Sex..Both...Age..5.14.years, 
+                     Age_15_19 = Depressive.disorders..share.of.population....Sex..Both...Age..15.19.years, 
+                     Age_20_24 = Depressive.disorders..share.of.population....Sex..Both...Age..20.24.years, 
+                     Age_25_29 = Depressive.disorders..share.of.population....Sex..Both...Age..25.29.years, 
+                     Age_30_34 = Depressive.disorders..share.of.population....Sex..Both...Age..30.34.years, 
+                     Age_35_39 = Depressive.disorders..share.of.population....Sex..Both...Age..35.39.years, 
+                     Age_40_44 = Depressive.disorders..share.of.population....Sex..Both...Age..40.44.years, 
+                     Age_45_49 = Depressive.disorders..share.of.population....Sex..Both...Age..45.49.years, 
+                     Age_50_54 = Depressive.disorders..share.of.population....Sex..Both...Age..50.54.years, 
+                     Age_55_59 = Depressive.disorders..share.of.population....Sex..Both...Age..55.59.years, 
+                     Age_60_64 = Depressive.disorders..share.of.population....Sex..Both...Age..60.64.years, 
+                     Age_65_69 = Depressive.disorders..share.of.population....Sex..Both...Age..65.69.years, 
+                     Age_70 = Depressive.disorders..share.of.population....Sex..Both...Age..70..years, 
+                     All_Ages = Depressive.disorders..share.of.population....Sex..Both...Age..All.ages , 
+                     Age_Standardised = Depressive.disorders..share.of.population....Sex..Both...Age..Age.standardized)
+```
+
+```{r}
+#Calculating average share of various age groups with depression around the world in 2019 
+
+avg_share <- tidy_data_1 |>
+             filter( Year == 2019) |>
+             summarise( Age_5_14 = mean(Age_5_14), 
+                        Age_15_19 = mean(Age_15_19), 
+                        Age_20_24 = mean(Age_20_24), 
+                        Age_25_29 = mean(Age_25_29), 
+                        Age_30_34 = mean(Age_30_34), 
+                        Age_35_39 = mean(Age_35_39), 
+                        Age_40_44 = mean(Age_40_44), 
+                        Age_45_49 = mean(Age_45_49),
+                        Age_50_54 = mean(Age_50_54), 
+                        Age_55_59 = mean(Age_55_59), 
+                        Age_60_64 = mean(Age_60_64), 
+                        Age_65_69 = mean(Age_65_69), 
+                        Age_70 = mean(Age_70), 
+                        All_Ages = mean(All_Ages))
+
+long_data <- avg_share |> 
+  pivot_longer(
+    cols = starts_with("Age_"),
+    names_to = "age_groups",
+    values_to = "share_avg"
+    ) |> 
+  select(-All_Ages)
+                        
+long_data <- long_data |>
+             mutate(share_avg = round(share_avg, 1))                        
+```
 
 
+```{r fig.width= 11, fig.height = 6 }
+#| label: fig-trend
+#| fig-cap: "Prevalence of Depression by Age Group"
+# Creating the plot 
+
+ggplot(long_data, aes(x = share_avg, y = reorder(age_groups, share_avg), fill = share_avg)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(share_avg, "%")), hjust = -0.1) +
+  scale_fill_gradient(high = "maroon", low = "yellow") +
+  theme_minimal() +
+  labs(title = "Prevalence of Depression by Age Group",
+       x = "Percentage",
+       y = "Age Group") +
+  theme(axis.text.x = element_text(angle = 0, hjust = 1), 
+        plot.margin = margin(t = 20, r = 40, b = 20, l = 20),
+        legend.position = "none")
+
+
+```
+
+What’s fascinating is how people around the world responded to these mental health challenges. Cultural norms, societal values, and economic realities all influenced the ways people coped with anxiety and depression. Understanding these coping methods matters because it helps tailor mental health services to better address individual needs. It refines therapeutic approaches, making them more responsive to diverse preferences, and empowers people to build resilience by drawing on the coping practices of others. Additionally, these insights contribute to mental health research, paving the way for innovative therapies that make a meaningful difference.
+
+It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our World in Data, “How do people deal with anxiety or depression around the world?” 
+
+The dataset includes responses from people who experienced anxiety or depression severe enough to disrupt their daily lives for two weeks or more. Key variables include each country’s name (Entity), the country code (Code), and the year of reporting (Year). Most importantly, the dataset details the percentage of people engaging in various coping methods, like spiritual activities, healthy lifestyle changes, altering work or personal relationships, talking to loved ones, taking prescribed medication, spending time in nature, and seeking professional help.
+
+To make sense of the data, I cleaned up the dataset by renaming columns to make them clearer and more descriptive. Next, I calculated the average percentage of use for each coping method to find out which strategies were the most common. I used the summarise function for this step and took care of any missing values along the way. Once I had the averages, I transformed the data into a long format to make it easier to work with. From there, I created a summary table to show the share of use for each coping strategy, formatting it with kable so it was neat and easy to read.
+
+But I wanted to go beyond averages. To see how coping strategies varied across countries, I reshaped the data into a long format again, where each row represented a country and its corresponding share for each coping method. After grouping by method using group_by function and sorting in descending order, I identified the top 5 countries for each coping strategy using the top_n function.
+
+I visualized these insights with ggplot, creating a bar plot with the percentage share of each method on the x-axis and the corresponding countries on the y-axis. I used facet_wrap to break down the plot by coping method, presenting methods into separate panels for clarity, with two columns.

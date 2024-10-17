@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Emi Tanaka">
-<meta name="dcterms.date" content="2022-07-18">
+<meta name="author" content="Pooja Rajendran Raju">
+<meta name="dcterms.date" content="2024-10-16">
 
-<title>blog-template - Welcome To My Blog Template</title>
+<title>blog-template - From Isolation to Connection: How the World Managed Mental Health in 2020</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -110,9 +110,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome To My Blog Template</h1>
+      <h1 class="title">From Isolation to Connection: How the World Managed Mental Health in 2020</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
+                <div class="quarto-category">article</div>
               </div>
                   </div>
   </div>
@@ -123,14 +123,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Emi Tanaka </p>
+               <p>Pooja Rajendran Raju </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 18, 2022</p>
+        <p class="date">October 16, 2024</p>
       </div>
     </div>
     
@@ -149,8 +149,28 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
+<p>When COVID-19 hit, the world didn’t just face a health crisis—it also grappled with a mental health crisis. Depression rates surged as people dealt with isolation, financial worries, and uncertainty. So, how did people cope? That’s what we’re digging into here: the different ways people across the globe managed their mental health during the pandemic and what were the most popular coping stategies. By understanding these unique strategies, we can build better mental health support systems that fit different cultural and social contexts.</p>
+<p>Depression isn’t confined to any one group—it impacts people of all ages, backgrounds, and cultures. Recent data shows that depressive symptoms were already on the rise by 2019, particularly affecting older age groups. The COVID-19 pandemic only intensified this trend, with anxiety and depression surging worldwide. According to the World Health Organization (2022), mental health became a critical issue for millions, emphasizing the urgent need for support.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-trend" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-trend-1.png" class="img-fluid figure-img" width="1056">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Prevalence of Depression by Age Group
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>What’s fascinating is how people around the world responded to these mental health challenges. Cultural norms, societal values, and economic realities all influenced the ways people coped with anxiety and depression. Understanding these coping methods matters because it helps tailor mental health services to better address individual needs. It refines therapeutic approaches, making them more responsive to diverse preferences, and empowers people to build resilience by drawing on the coping practices of others. Additionally, these insights contribute to mental health research, paving the way for innovative therapies that make a meaningful difference.</p>
+<p>It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our World in Data, “How do people deal with anxiety or depression around the world?”</p>
+<p>The dataset includes responses from people who experienced anxiety or depression severe enough to disrupt their daily lives for two weeks or more. Key variables include each country’s name (Entity), the country code (Code), and the year of reporting (Year). Most importantly, the dataset details the percentage of people engaging in various coping methods, like spiritual activities, healthy lifestyle changes, altering work or personal relationships, talking to loved ones, taking prescribed medication, spending time in nature, and seeking professional help.</p>
+<p>To make sense of the data, I cleaned up the dataset by renaming columns to make them clearer and more descriptive. Next, I calculated the average percentage of use for each coping method to find out which strategies were the most common. I used the summarise function for this step and took care of any missing values along the way. Once I had the averages, I transformed the data into a long format to make it easier to work with. From there, I created a summary table to show the share of use for each coping strategy, formatting it with kable so it was neat and easy to read.</p>
+<p>But I wanted to go beyond averages. To see how coping strategies varied across countries, I reshaped the data into a long format again, where each row represented a country and its corresponding share for each coping method. After grouping by method using group_by function and sorting in descending order, I identified the top 5 countries for each coping strategy using the top_n function.</p>
+<p>I visualized these insights with ggplot, creating a bar plot with the percentage share of each method on the x-axis and the corresponding countries on the y-axis. I used facet_wrap to break down the plot by coping method, presenting methods into separate panels for clarity, with two columns.</p>
 
 
 
