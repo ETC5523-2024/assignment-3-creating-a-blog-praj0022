@@ -9,7 +9,7 @@
 <meta name="author" content="Pooja Rajendran Raju">
 <meta name="dcterms.date" content="2024-10-16">
 
-<title>blog-template - From Isolation to Connection: How the World Managed Mental Health in 2020</title>
+<title>Wellness Meets Data - From Isolation to Connection: How the World Managed Mental Health in 2020</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">blog-template</span>
+    <span class="navbar-title">Wellness Meets Data</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title column-body">
       <h1 class="title">From Isolation to Connection: How the World Managed Mental Health in 2020</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">article</div>
+                <div class="quarto-category">Blog</div>
               </div>
                   </div>
   </div>
@@ -168,7 +168,7 @@ Figure&nbsp;1: Prevalence of Depression by Age Group
 </div>
 </div>
 <p>What’s fascinating is how people around the world responded to these mental health challenges. Cultural norms, societal values, and economic realities all influenced the ways people coped with anxiety and depression. Understanding these coping methods matters because it helps tailor mental health services to better address individual needs. It refines therapeutic approaches, making them more responsive to diverse preferences, and empowers people to build resilience by drawing on the coping practices of others. Additionally, these insights contribute to mental health research, paving the way for innovative therapies that make a meaningful difference.</p>
-<p>It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our World in Data, “How do people deal with anxiety or depression around the world?”</p>
+<p>It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our <a href="https://ourworldindata.org/grapher/dealing-with-anxiety-depression-comparison?tab=table">World in Data</a>, “How do people deal with anxiety or depression around the world?”</p>
 <p>The dataset includes responses from people who experienced anxiety or depression severe enough to disrupt their daily lives for two weeks or more. Key variables include each country’s name (Entity), the country code (Code), and the year of reporting (Year). Most importantly, the dataset details the percentage of people engaging in various coping methods, like spiritual activities, healthy lifestyle changes, altering work or personal relationships, talking to loved ones, taking prescribed medication, spending time in nature, and seeking professional help.</p>
 <p>To make sense of the data, I cleaned up the dataset by renaming columns to make them clearer and more descriptive. Next, I calculated the average percentage of use for each coping method to find out which strategies were the most common. I used the summarise function for this step and took care of any missing values along the way. Once I had the averages, I transformed the data into a long format to make it easier to work with. From there, I created a summary table to show the share of use for each coping strategy, formatting it with kable so it was neat and easy to read.</p>
 <p>But I wanted to go beyond averages. To see how coping strategies varied across countries, I reshaped the data into a long format again, where each row represented a country and its corresponding share for each coping method. After grouping by method using group_by function and sorting in descending order, I identified the top 5 countries for each coping strategy using the top_n function.</p>
@@ -189,41 +189,41 @@ Table&nbsp;1: Share of Use of Various Coping Methods
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Methods</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Share of Use in Percentage</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Share of Use in Percentage</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Talked to friends or family</td>
-<td style="text-align: right; font-weight: bold;">79.53809</td>
+<td style="text-align: center; font-weight: bold;">79.54</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; font-weight: bold;">Spent time in nature</td>
-<td style="text-align: right; font-weight: bold;">72.01470</td>
+<td style="text-align: center; font-weight: bold;">72.01</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Improved healthy lifestyle behaviors</td>
-<td style="text-align: right; font-weight: bold;">70.84874</td>
+<td style="text-align: center; font-weight: bold;">70.85</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Made a change to personal relationships</td>
-<td style="text-align: right;">60.42453</td>
+<td style="text-align: center;">60.42</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Made a change to work situation</td>
-<td style="text-align: right;">49.71871</td>
+<td style="text-align: center;">49.72</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Took prescribed medication</td>
-<td style="text-align: right;">49.11862</td>
+<td style="text-align: center;">49.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Talked to mental health professional</td>
-<td style="text-align: right;">44.11910</td>
+<td style="text-align: center;">44.12</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Religious spiritual activities</td>
-<td style="text-align: right;">42.88649</td>
+<td style="text-align: center;">42.89</td>
 </tr>
 </tbody>
 </table>

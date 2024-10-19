@@ -1,4 +1,71 @@
-/* css styles */
-.navbar-dark, .quarto-title-banner {
-  background-color: #006DAE;
+/* Background and font color */
+body {
+  background-color: #EBF5FB;
+  color: #333333;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 500;
 }
+
+/* Banner section  */
+.quarto-title-banner {
+  background: linear-gradient(135deg, #b0e0e6, #98c1d9);
+  padding: 40px 20px;
+  text-align: left;
+  min-height: 160px;
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quarto-title-banner h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+}
+
+/* Navbar styles - smooth color transitions */
+.navbar-dark {
+  background: #8faec4;
+  color: #FFFFFF;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+}
+
+.navbar-dark .nav-link {
+  color: #FFFFFF;
+}
+
+
+
+/* Heading adjustments for readability */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.4;
+}
+
+/* Subtle borders for content sections */
+.article-container {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.categories {
+  border: 1px solid #ddd;
+  padding: 15px;
+  background-color: #F9F9F9;
+  border-radius: 8px;
+}
+

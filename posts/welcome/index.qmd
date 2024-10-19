@@ -2,7 +2,7 @@
 title: "From Isolation to Connection: How the World Managed Mental Health in 2020"
 author: "Pooja Rajendran Raju"
 date: "2024-10-16"
-categories: [article]
+categories: [Blog]
 ---
 
 ```{r Setup, echo=FALSE}
@@ -103,7 +103,7 @@ ggplot(long_data, aes(x = share_avg, y = reorder(age_groups, share_avg), fill = 
 
 What’s fascinating is how people around the world responded to these mental health challenges. Cultural norms, societal values, and economic realities all influenced the ways people coped with anxiety and depression. Understanding these coping methods matters because it helps tailor mental health services to better address individual needs. It refines therapeutic approaches, making them more responsive to diverse preferences, and empowers people to build resilience by drawing on the coping practices of others. Additionally, these insights contribute to mental health research, paving the way for innovative therapies that make a meaningful difference.
 
-It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our World in Data, “How do people deal with anxiety or depression around the world?” 
+It’s clear that a one-size-fits-all approach to mental health won’t work. The more we understand about different coping strategies, the better we can support those who need it most. To explore these coping strategies, I analyzed the 2020 dataset from Our [World in Data](https://ourworldindata.org/grapher/dealing-with-anxiety-depression-comparison?tab=table), “How do people deal with anxiety or depression around the world?” 
 
 The dataset includes responses from people who experienced anxiety or depression severe enough to disrupt their daily lives for two weeks or more. Key variables include each country’s name (Entity), the country code (Code), and the year of reporting (Year). Most importantly, the dataset details the percentage of people engaging in various coping methods, like spiritual activities, healthy lifestyle changes, altering work or personal relationships, talking to loved ones, taking prescribed medication, spending time in nature, and seeking professional help.
 
@@ -138,17 +138,20 @@ tidy_data_2 <- data_2 |>
 ```{r}
 #| label: tbl-coping
 #| tbl-cap: "Share of Use of Various Coping Methods"
-# Calculating the top 5 strategies used to cope with depression 
+# Calculating the top 3 strategies used to cope with depression 
 
 top_five <- tidy_data_2 |> 
-            summarise("Religious spiritual activities" = mean(Religious_spiritual_activities, na.rm = TRUE), 
-                       "Improved healthy lifestyle behaviors" = mean(Improved_healthy_lifestyle_behaviors, na.rm = TRUE), 
-                       "Made a change to work situation" = mean(Made_a_change_to_work_situation, na.rm = TRUE), 
-                       "Made a change to personal relationships" = mean(Made_a_change_to_personal_relationships, na.rm = TRUE), 
-                       "Talked to friends or family" = mean(Talked_to_friends_or_family, na.rm = TRUE), 
-                       "Took prescribed medication" = mean(Took_prescribed_medication, na.rm = TRUE),
-                       "Spent time in nature" = mean(Spent_time_in_nature, na.rm = TRUE), 
-                       "Talked to mental health professional" = mean(Talked_to_mental_health_professional, na.rm = TRUE))
+  summarise(
+    "Religious spiritual activities" = format(round(mean(Religious_spiritual_activities, na.rm = TRUE), 2), nsmall = 2), 
+    "Improved healthy lifestyle behaviors" = format(round(mean(Improved_healthy_lifestyle_behaviors, na.rm = TRUE), 2), nsmall = 2), 
+    "Made a change to work situation" = format(round(mean(Made_a_change_to_work_situation, na.rm = TRUE), 2), nsmall = 2), 
+    "Made a change to personal relationships" = format(round(mean(Made_a_change_to_personal_relationships, na.rm = TRUE), 2), nsmall = 2), 
+    "Talked to friends or family" = format(round(mean(Talked_to_friends_or_family, na.rm = TRUE), 2), nsmall = 2), 
+    "Took prescribed medication" = format(round(mean(Took_prescribed_medication, na.rm = TRUE), 2), nsmall = 2),
+    "Spent time in nature" = format(round(mean(Spent_time_in_nature, na.rm = TRUE), 2), nsmall = 2), 
+    "Talked to mental health professional" = format(round(mean(Talked_to_mental_health_professional, na.rm = TRUE), 2), nsmall = 2)
+  )
+
 
 table_data <- top_five |>
   pivot_longer(
@@ -161,10 +164,12 @@ table_data <- top_five |>
 
  table_data |>
         kable(col.names = c("Methods", "Share of Use in Percentage"), 
-        caption = "Share of Use of Various Coping Methods") |>
+        caption = "Share of Use of Various Coping Methods",
+          format = "html", align = c("l", "c")) |>
         kable_styling(bootstrap_options = c("striped"), 
                 full_width = F) |>
-  row_spec(1:3, bold = TRUE) 
+        row_spec(1:3, bold = TRUE) 
+        
 ``` 
 
 Among the eight strategies analyzed in  @tbl-coping, talking to friends or family, spending time in nature, and improving healthy lifestyle behaviors took the top spots. Turns out, 79.5% of people leaned on their social circles, choosing to talk to friends or family when managing anxiety or depression. It makes sense—social support is a tried-and-true way to feel less isolated and more grounded when things get tough. Meanwhile, 72.01% of people found comfort in the great outdoors. Spending time in nature isn’t just a nice escape; it's scientifically proven to lower stress and boost your mood. Whether it’s a walk in the park or a weekend hike, the fresh air works wonders. Then there’s improving healthy lifestyle behaviors, chosen by 70.85%. Small changes like exercising more, eating well, and getting enough sleep can make a significant difference in how people manage their mental health, highlighting the important link between physical and emotional well-being.
@@ -276,4 +281,6 @@ Understanding these differences is key to creating mental health strategies that
 
 1. World Health Organization. (2022, March 2). COVID-19 pandemic triggers 25% increase in prevalence of anxiety and depression worldwide. World Health Organization. https://www.who.int/news/item/02-03-2022-covid-19-pandemic-triggers-25-increase-in-prevalence-of-anxiety-and-depression-worldwide
 2. Bell, C. A., Williams, J. L., & Cooper, S. E. (2021). Coping with the COVID-19 pandemic: A review of mental health strategies. Journal of Global Health, 11(3), 456-467. https://www.jogh.org/coping-with-the-covid-19-pandemic-a-review-of-mental-health-strategies
+
+
 
